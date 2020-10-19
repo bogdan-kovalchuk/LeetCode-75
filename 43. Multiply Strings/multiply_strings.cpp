@@ -27,24 +27,30 @@
 
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    string multiply(string num1, string num2) {
-        if (num1.size() == 1 || num2.size() == 1)
+    string multiply(string num1, string num2)
+    {
+        if (num1.length() == 1 || num2.length() == 1)
             return to_string(stoi(num1) * stoi(num2));
 
-        int m = min(num1.size(), num2.size())/2;
+        int m = min(num1.size(), num2.size()) / 2;
 
         string x0, x1, y0, y1;
+        int z0, z1, z2;
+
+        x0 = num1.substr(m);
         x1 = num1.substr(0, m);
-        x0 = num1.substr(m + 1, num1.back());
 
+        y0 = num2.substr(m);
         y1 = num2.substr(0, m);
-        y0 = num2.substr(m + 1, num2.back());
 
-        cout << "";
+        z0 = stoi(multiply(x0, y0));
+        z1 = stoi(multiply(x1, y0)) + stoi(multiply(x0, y1));
+        z2 = stoi(multiply(x1, y1));
 
-        
+        return to_string(z2 * 10 ^ (m * 2) + (z1 - z2 - z0) * 10 ^ m + z0);
     }
 };
 
