@@ -23,7 +23,8 @@
 
 #include <iostream>
 #include <string>
-// #include <math.h>
+#include <algorithm>
+#include <math.h>
 
 using namespace std;
 
@@ -32,32 +33,68 @@ class Solution
 public:
     string multiply(string num1, string num2)
     {
-        if (num1.length() == 1 || num2.length() == 1)
+        if (num1.length() < 2 && num2.length() < 2)
             return to_string(stoi(num1) * stoi(num2));
 
-        int m = min(num1.size(), num2.size()) / 2;
+        int min_len = min(num1.length(), num2.length());
+        int m = min_len / 2;
 
-        string x0, x1, y0, y1;
-        int z0, z1, z2;
+        string x0, x1, y0, y1, z0, z1, z2;
 
-        x0 = num1.substr(m);
-        x1 = num1.substr(0, m);
+        if (num1.length() < 2)
+        {
+            x0 = "0";
+            x1 = num1;
+        }
+        else
+        {
+            x0 = num1.substr(m);
+            x1 = num1.substr(0, m);
+        }
 
         y0 = num2.substr(m);
         y1 = num2.substr(0, m);
 
-        z0 = stoi(multiply(x0, y0));
-        z1 = stoi(multiply(x1, y0)) + stoi(multiply(x0, y1));
-        z2 = stoi(multiply(x1, y1));
+        z0 = multiply(x0, y0);
+        z1 = add_str(multiply(x0, y1), multiply(x0, y1));
+        z2 = multiply(x1, y1);
 
-        return to_string(z2 * 10 ^ (m * 2) + (z1 - z2 - z0) * 10 ^ m + z0);
+        int degree = min_len - m;
+
+        for (int i = 1; i < 2 * degree; ++i)
+        {
+            z2 += '0';
+        }
+
+        for (int i = 1; i < degree; ++i)
+        {
+            z1 += '0';
+        }
+
+        return add_str(add_str(z2, z1), z0);
+    }
+
+    string add_str(string num1, string num2)
+    {
+        int sum = 0, i = num1.length() - 1, j = num2.length() - 1;
+        string str;
+        while (i >= 0 || j >= 0 || sum > 0)
+        {
+            if (i >= 0)
+                sum += (num1[i--] - '0');
+            if (j >= 0)
+                sum += (num2[j--] - '0');
+            str.insert(0, 1, (sum % 10) + '0');
+            sum /= 10;
+        }
+        return str;
     }
 };
 
 int main()
 {
     string num1 = "233";
-    string num2 = "3345";
+    string num2 = "3345"; // (len - m)
     Solution solution;
 
     cout << solution.multiply(num1, num2) << endl;
