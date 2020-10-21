@@ -57,7 +57,7 @@ public:
         return add_str(add_str(z2, z1), z0);
     }
 
-    string add_str(string num1, string num2)
+    string add_str(const string &num1, const string &num2)
     {
         int sum = 0, i = num1.length() - 1, j = num2.length() - 1;
         string str;
@@ -99,7 +99,7 @@ public:
 int main()
 {
     string num1 = "233";
-    string num2 = "3345"; // (len - m)
+    string num2 = "3345";
     Solution solution;
 
     cout << solution.multiply(num1, num2) << endl;
