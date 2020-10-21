@@ -51,7 +51,7 @@ public:
         z1 = add_str(multiply(x0, y1), multiply(y0, x1));
         z2 = multiply(x1, y1);
 
-        pow10_str(z2, 2*m);
+        pow10_str(z2, 2 * m);
         pow10_str(z1, m);
 
         return add_str(add_str(z2, z1), z0);
