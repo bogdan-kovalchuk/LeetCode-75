@@ -22,6 +22,11 @@
  *   nums2.length == n
  **/
 
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
 class Solution
 {
 public:
