@@ -1,9 +1,1 @@
-.idea/LeetCode.iml
-.idea/modules.xml
-.idea/vcs.xml
-.idea/workspace.xml
-43. Multiply Strings/multiply_strings
-88. Merge Sorted Array/merge_sorted_array
-232. Implement Queue using Stacks/Implement_queue_using_stacks
-997. Find the Town Judge/Find_the_town_judge
-236. Lowest Common Ancestor of a Binary Tree/Lowest_common_ancestor_of_a_binary_tree
+.vscode
