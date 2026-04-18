@@ -1,4 +1,4 @@
-LeetCode: 75
+LeetCode-CPP-75
 ========
 
 Curated table of selected C++ problems from the LeetCode 75 study plan.
