@@ -1,15 +1,24 @@
 #include "../leetcode_test.hpp"
 
-class Solution {
+class Solution
+{
 public:
-    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
-        throw logic_error("Not implemented");
+    vector<bool> kidsWithCandies(vector<int> &candies, int extraCandies)
+    {
+        int mx = *std::max_element(candies.begin(), candies.end());
+        vector<bool> result;
+        for (int n : candies)
+        {
+            result.push_back(n + extraCandies >= mx);
+        }
+        return result;
     }
 };
 
 // LOCAL_TEST_BEGIN
 #ifdef LOCAL_TEST
-int main() {
+int main()
+{
     {
         Solution solution;
         vector<int> candies = vector<int>{2, 3, 5, 1, 3};
