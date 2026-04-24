@@ -1,15 +1,41 @@
 #include "../leetcode_test.hpp"
 
-class Solution {
+class Solution
+{
 public:
-    string reverseWords(string s) {
-        throw logic_error("Not implemented");
+    string reverseWords(string s)
+    {
+        string result;
+        int i = s.size() - 1;
+
+        while (i >= 0)
+        {
+            while (i >= 0 && s[i] == ' ')
+                i--;
+
+            if (i < 0)
+                break;
+
+            int j = i;
+
+            while (j >= 0 && s[j] != ' ')
+                j--;
+
+            if (!result.empty())
+                result += ' ';
+            result.append(s.substr(j + 1, i - j));
+
+            i = j - 1;
+        }
+
+        return result;
     }
 };
 
 // LOCAL_TEST_BEGIN
 #ifdef LOCAL_TEST
-int main() {
+int main()
+{
     {
         Solution solution;
         string s = "the sky is blue";
