@@ -1,15 +1,30 @@
 #include "../leetcode_test.hpp"
 
-class Solution {
+class Solution
+{
 public:
-    bool increasingTriplet(vector<int>& nums) {
-        throw logic_error("Not implemented");
+    bool increasingTriplet(vector<int> &nums)
+    {
+        int first = INT_MAX;
+        int second = INT_MAX;
+
+        for (auto num : nums)
+        {
+            if (num <= first)
+                first = num;
+            else if (num <= second)
+                second = num;
+            else
+                return true;
+        }
+        return false;
     }
 };
 
 // LOCAL_TEST_BEGIN
 #ifdef LOCAL_TEST
-int main() {
+int main()
+{
     {
         Solution solution;
         vector<int> nums = vector<int>{1, 2, 3, 4, 5};
