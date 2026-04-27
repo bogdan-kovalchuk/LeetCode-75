@@ -1,15 +1,44 @@
 #include "../leetcode_test.hpp"
 
-class Solution {
+class Solution
+{
 public:
-    int compress(vector<char>& chars) {
-        throw logic_error("Not implemented");
+    int compress(vector<char> &chars)
+    {
+        int write = 0;
+        int read = 0;
+
+        while (read < chars.size())
+        {
+            char current = chars[read];
+            int count = 0;
+
+            while (read < chars.size() && chars[read] == current)
+            {
+                read++;
+                count++;
+            }
+
+            chars[write++] = current;
+
+            if (count > 1)
+            {
+                string countStr = to_string(count);
+                for (char c : countStr)
+                {
+                    chars[write++] = c;
+                }
+            }
+        }
+
+        return write;
     }
 };
 
 // LOCAL_TEST_BEGIN
 #ifdef LOCAL_TEST
-int main() {
+int main()
+{
     {
         Solution solution;
         vector<char> chars = vector<char>{'a', 'a', 'b', 'b', 'c', 'c', 'c'};
