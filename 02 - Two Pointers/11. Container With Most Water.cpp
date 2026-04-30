@@ -1,15 +1,35 @@
 #include "../leetcode_test.hpp"
 
-class Solution {
+class Solution
+{
 public:
-    int maxArea(vector<int>& height) {
-        throw logic_error("Not implemented");
+    int maxArea(vector<int> &height)
+    {
+        int i = 0, j = height.size() - 1;
+        int max_water_amount = 0;
+
+        while (i < j)
+        {
+            int width = j - i;
+            int water_amount = min(height[i], height[j]) * width;
+
+            if (water_amount > max_water_amount)
+                max_water_amount = water_amount;
+
+            if (height[i] < height[j])
+                i++;
+            else
+                j--;
+        }
+
+        return max_water_amount;
     }
 };
 
 // LOCAL_TEST_BEGIN
 #ifdef LOCAL_TEST
-int main() {
+int main()
+{
     {
         Solution solution;
         vector<int> height = vector<int>{1, 8, 6, 2, 5, 4, 8, 3, 7};
