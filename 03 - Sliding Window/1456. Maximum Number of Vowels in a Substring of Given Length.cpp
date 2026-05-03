@@ -1,15 +1,37 @@
 #include "../leetcode_test.hpp"
 
-class Solution {
+class Solution
+{
 public:
-    int maxVowels(string s, int k) {
-        throw logic_error("Not implemented");
+    int maxVowels(string s, int k)
+    {
+        std::string vowels = "aeiou";
+        int n_vowels = 0;
+
+        for (int i = 0; i < k; ++i)
+            if (vowels.find(s[i]) != std::string::npos)
+                n_vowels++;
+
+        int max_vowels = n_vowels;
+
+        for (int i = k; i < s.length(); ++i)
+        {
+            if (vowels.find(s[i - k]) != std::string::npos)
+                n_vowels--;
+
+            if (vowels.find(s[i]) != std::string::npos)
+                n_vowels++;
+
+            max_vowels = std::max(max_vowels, n_vowels);
+        }
+        return max_vowels;
     }
 };
 
 // LOCAL_TEST_BEGIN
 #ifdef LOCAL_TEST
-int main() {
+int main()
+{
     {
         Solution solution;
         string s = "abciiidef";
