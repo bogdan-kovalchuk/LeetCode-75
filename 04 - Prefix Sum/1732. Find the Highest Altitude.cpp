@@ -1,15 +1,27 @@
 #include "../leetcode_test.hpp"
 
-class Solution {
+class Solution
+{
 public:
-    int largestAltitude(vector<int>& gain) {
-        throw logic_error("Not implemented");
+    int largestAltitude(vector<int> &gain)
+    {
+        int altitude = 0;
+        int maxAltitude = 0;
+
+        for (int x : gain)
+        {
+            altitude += x;
+            maxAltitude = std::max(maxAltitude, altitude);
+        }
+
+        return maxAltitude;
     }
 };
 
 // LOCAL_TEST_BEGIN
 #ifdef LOCAL_TEST
-int main() {
+int main()
+{
     {
         Solution solution;
         vector<int> gain = vector<int>{-5, 1, 5, 0, -7};
